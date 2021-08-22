@@ -18,5 +18,9 @@ function mostrarPokemon(id){
 function mostrarPokemons(){
     return Object.values(pokemons)
 }
+function atualizarPokemons(id, pokemon){
+    pokemons[id] = pokemon
+    return pokemon
+}
 
-module.exports = {salvarPokemons, mostrarPokemon, mostrarPokemons}
+module.exports = {salvarPokemons, mostrarPokemon, mostrarPokemons, atualizarPokemons}
