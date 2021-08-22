@@ -38,32 +38,43 @@ function batalhaPokemon(id1,id2){
     const efetivo = 20
     const naoEfetivo = 10
 
-    const pkmn1 = pokemons[id1]
-    const pkmn2 = pokemons[id2]
+    const pokemon1 = pokemons[id1]
+    const pokemon2 = pokemons[id2]
 
-    if(pkmn1.hp!=0 && pkmn2.hp != 0) {
-        if(pkmn1.tipo==pkmn2.fraqueza){
-            pkmn2.hp = pkmn2.hp - superEfetivo
-        } else if (pkmn1.tipo==pkmn2.resitencia){
-            pkmn2.hp = pkmn2.hp = naoEfetivo
-        } else {
-            pkmn2.hp = pkmn2.hp = efetivo
+    if(pokemon1.hp != 0 && pokemon2.hp != 0){
+        if(pokemon1.tipo==pokemon2.fraqueza){
+            pokemon2.hp = pokemon2.hp - superEfetivo 
+        }else if (pokemon1.tipo == pokemon2.resistencia){
+            pokemon2.hp = pokemon2.hp - naoEfetivo
+        }else {
+            pokemon2.hp = pokemon2.hp - efetivo
         }
     }
-    if(pkmn1.hp!=0 && pkmn2.hp != 0) {
-        if(pkmn2.tipo==pkmn1.fraqueza){
-            pkmn1.hp = pkmn1.hp - superEfetivo
-        } else if (pkmn2.tipo==pkmn1.resitencia){
-            pkmn1.hp = pkmn1.hp = naoEfetivo
-        } else {
-            pkmn1.hp = pkmn1.hp = efetivo
+
+    if(pokemon2.hp != 0 && pokemon1.hp != 0){
+        if(pokemon2.tipo==pokemon1.fraqueza){
+            pokemon1.hp = pokemon1.hp - superEfetivo 
+        }else if (pokemon2.tipo == pokemon1.resistencia){
+            pokemon1.hp = pokemon1.hp - naoEfetivo
+        }else {
+            pokemon1.hp = pokemon1.hp - efetivo
         }
     }
-    if (pkmn1.hp<0) pkmn1.hp = 0
-    if (pkmn2.hp<0) pkmn2.hp = 0
-    return '${pkmn1.nome} : ${pkmn1.hp} / ${pkmn2.nome} : ${pkmn2.hp}'  
-}
-function pocaoPokemon(id){
 
+    
+
+    if (pokemon1.hp<0) pokemon1.hp = 0
+    if (pokemon2.hp<0) pokemon2.hp = 0
+    return `${pokemon1.nome} : ${pokemon1.hp} / ${pokemon2.nome} : ${pokemon2.hp}`
 }
-module.exports = {salvarPokemons, mostrarPokemon, mostrarPokemons, atualizarPokemons, deletarPokemon, batalhaPokemon}
+function curaPokemon(id){
+    pokemon = pokemons[id]
+    pokemon.hp +=20
+    if (pokemon.hp>100) pokemon.hp = 100
+    return`${pokemon.nome} está com ${pokemon.hp} de hp`;
+}
+module.exports = {
+    salvarPokemons, mostrarPokemon, mostrarPokemons, 
+    atualizarPokemons, deletarPokemon, batalhaPokemon,
+    curaPokemon
+}
