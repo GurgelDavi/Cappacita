@@ -6,7 +6,7 @@ const sequence = {
 const pokemons = {}
 
 function salvarPokemons(pokemon) {
-    if(pokemon.id) pokemon.id = sequence._id
+    if(!pokemon.id) pokemon.id = sequence.id
     pokemons[pokemon.id] = pokemon
     return pokemon
 }

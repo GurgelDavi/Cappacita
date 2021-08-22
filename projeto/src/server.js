@@ -1,11 +1,14 @@
 const express = require('express')
 const app = express()
 const dataBase = require('./database')
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.urlencoded({extended : true }))
 
 app.get('/pokemons', (req, res) => {
     res.send(dataBase.mostrarPokemons())
 }) 
-app.get('/pokemons/id', (req, res) => {
+app.get('/pokemons/:id', (req, res) => {
     res.send(dataBase.mostrarPokemon(req.params.id))
 }) 
 app.post('/pokemons', (req, res) => {
